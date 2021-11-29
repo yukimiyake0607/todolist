@@ -17,7 +17,8 @@ const onClickAdd = () => {
     const completeButton = document.createElement("button");
     completeButton.innerText = "完了";
     completeButton.addEventListener("click", () => {
-        alert("完了");
+        // 完了ボタンが押された時、完了ボタンの親要素(li)を未完了リストから削除する
+        deleteFromIncompleteList(completeButton.parentNode);
     });
     
     // button(削除)を生成
@@ -25,8 +26,7 @@ const onClickAdd = () => {
     deleteButton.innerText = "削除";
     deleteButton.addEventListener("click", () => {
         // 削除ボタンが押された時、削除ボタンの親要素(li)を未完了リストから削除する
-        const deleteTarget = deleteButton.parentNode;
-        document.getElementById("incomplete-list").removeChild(deleteTarget);
+        deleteFromIncompleteList(deleteButton.parentNode)
     });
     
     // liの子要素に各要素を指定
@@ -40,7 +40,10 @@ const onClickAdd = () => {
 };
 
 
-
+// 未完了リストから指定の要素を削除
+const deleteFromIncompleteList = (target) => {
+    document.getElementById("incomplete-list").removeChild(target);
+};
 
 // 追加ボタンをクリックすると、onClickAddが実行される
 document
