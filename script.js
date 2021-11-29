@@ -1,5 +1,4 @@
 
-
 const onClickAdd = () => {
     // テキストボックスの値を取得し、初期化する
     const inputText = document.getElementById("add-text").value;
@@ -36,6 +35,11 @@ const onClickAdd = () => {
         // button(戻す)タグを生成
         const backButton = document.createElement("button");
         backButton.innerText = "戻す";
+        backButton.addEventListener("click", () => {
+            // 押された戻すボタンの親タグ(li)を完了リストから削除
+            const deleteTarget = backButton.parentNode;
+            document.getElementById("complete-list").removeChild(deleteTarget);
+        });
 
         // liタグの子要素に各要素を指定
         addTarget.appendChild(p);
