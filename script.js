@@ -17,14 +17,32 @@ const onClickAdd = () => {
     const completeButton = document.createElement("button");
     completeButton.innerText = "完了";
     completeButton.addEventListener("click", () => {
+        // 完了ボタンが押された時、完了ボタンの親要素(li)を未完了リストから削除する
+        deleteFromIncompleteList(completeButton.parentNode);
+
         // 完了リストに追加する要素
         const addTarget = completeButton.parentNode;
 
         // TODO内容テキストを取得
         const text = addTarget.firstElementChild.innerText;
         
-        // 完了ボタンが押された時、完了ボタンの親要素(li)を未完了リストから削除する
-        deleteFromIncompleteList(completeButton.parentNode);
+        // liの中身を初期化
+        addTarget.textContent = null;
+        
+        // pタグを生成
+        const p = document.createElement("p");
+        p.innerText = text;
+
+        // button(戻す)タグを生成
+        const backButton = document.createElement("button");
+        backButton.innerText = "戻す";
+
+        // liタグの子要素に各要素を指定
+        addTarget.appendChild(p);
+        addTarget.appendChild(backButton);
+
+        // 完了リストに追加
+        document.getElementById("complete-list").appendChild(addTarget);
     });
     
     // button(削除)を生成
