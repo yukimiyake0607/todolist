@@ -17,6 +17,12 @@ const onClickAdd = () => {
     const completeButton = document.createElement("button");
     completeButton.innerText = "完了";
     completeButton.addEventListener("click", () => {
+        // 完了リストに追加する要素
+        const addTarget = completeButton.parentNode;
+
+        // TODO内容テキストを取得
+        const text = addTarget.firstElementChild.innerText;
+        
         // 完了ボタンが押された時、完了ボタンの親要素(li)を未完了リストから削除する
         deleteFromIncompleteList(completeButton.parentNode);
     });
