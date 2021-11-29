@@ -12,10 +12,31 @@ const onClickAdd = () => {
     // pタグを生成
     const p = document.createElement("p");
     p.innerText = inputText;
+
+    // button(完了)を生成
+    const completeButton = document.createElement("button");
+    completeButton.innerText = "完了";
+    completeButton.addEventListener("click", () => {
+        alert("完了");
+    });
+    
+    // button(削除)を生成
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "削除";
+    deleteButton.addEventListener("click", () => {
+        // 削除ボタンが押された時、削除ボタンの親要素(li)を未完了リストから削除する
+        const deleteTarget = deleteButton.parentNode;
+        document.getElementById("incomplete-list").removeChild(deleteTarget);
+    });
     
     // liの子要素に各要素を指定
     li.appendChild(p);
-    console.log(li);
+    li.appendChild(completeButton);
+    li.appendChild(deleteButton);
+
+    // liをulの子要素（未完了リスト）に追加
+    document.getElementById("incomplete-list").appendChild(li);
+    
 };
 
 
